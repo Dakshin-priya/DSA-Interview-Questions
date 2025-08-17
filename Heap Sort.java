@@ -32,6 +32,12 @@ void heapify(int[] arr, int n, int i) {
     // If right child is larger than largest so far
     if (r < n && arr[r] > arr[largest]) largest = r;
 
+/*
+    // To sort in descending order build min heap
+if (l < n && arr[l] < arr[largest]) largest = l; // for min heap
+if (r < n && arr[r] < arr[largest]) largest = r;
+*/
+
     // If largest is not root, swap and continue heapifying
     if (largest != i) {
         int swap = arr[i];
