@@ -1,40 +1,44 @@
 import java.util.*;
-class Node<T>
-{
+
+class Node<T> {
   T val;
   Node<T> left;
   Node<T> right;
 
-  Node(T val)
-  {
-    this.val=val;
-    this.right=null;
-    this.left=null;
+  Node(T val) {
+    this.val = val;
+    this.right = null;
+    this.left = null;
   }
 }
 
 class Source {
   public static List<String> depthFirstValues(Node<String> root) {
-    // todo
     Stack<Node<String>> stack = new Stack<>();
+    Set<Node<String>> visited = new HashSet<>();
     List<String> res = new ArrayList<>();
+
     if (root == null) return res;
+
     stack.push(root);
-    while(!stack.empty())
-      {
-        Node<String> curr=stack.pop();
+    while (!stack.empty()) {
+      Node<String> curr = stack.pop();
+
+      if (!visited.contains(curr)) {
+        visited.add(curr);
         res.add(curr.val);
-        
-        if(curr.right != null)
-          stack.add(curr.right);
-        if(curr.left !=null)
-          stack.add(curr.left);
+
+        // Push neighbors (children) to stack
+        if (curr.right != null)
+          stack.push(curr.right);
+        if (curr.left != null)
+          stack.push(curr.left);
       }
+    }
     return res;
   }
 
   public static void run() {
-    // this function behaves as `main()` for the 'run' command
-    // you may sandbox in this function , but should not remove it
+    // acts like main()
   }
 }
